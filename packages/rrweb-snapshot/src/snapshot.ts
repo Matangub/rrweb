@@ -1,3 +1,70 @@
+// eslint-disable-next-line
+const React = require('react');
+// eslint-disable-next-line
+const ReactDOM = require('react-dom');
+
+function FindReact(dom: any, traverseUp = 0) {
+  const key = Object.keys(dom ?? {}).find((key) => {
+    return (
+      key.startsWith('__reactFiber$') || // react 17+
+      key.startsWith('__reactInternalInstance$')
+    ); // react <17
+  });
+  const domFiber = dom?.[key as keyof typeof dom];
+  if (domFiber == null) return null;
+
+  // react <16
+  if (domFiber?._currentElement) {
+    let compFiber = domFiber?._currentElement?._owner;
+    for (let i = 0; i < traverseUp; i++) {
+      compFiber = compFiber._currentElement._owner;
+    }
+    return compFiber._instance;
+  }
+
+  // react 16+
+  const GetCompFiber = (fiber: any) => {
+    //return fiber._debugOwner; // this also works, but is __DEV__ only
+    let parentFiber = fiber?.return;
+    while (typeof parentFiber?.type == 'string') {
+      parentFiber = parentFiber?.return;
+    }
+    return parentFiber;
+  };
+  let compFiber = GetCompFiber(domFiber);
+  for (let i = 0; i < traverseUp; i++) {
+    compFiber = GetCompFiber(compFiber);
+  }
+  return compFiber.stateNode;
+}
+
+// @ts-ignore
+window.getReactDomComponent = function (dom: any) {
+  // @ts-ignore
+  const internalInstance =
+    // @ts-ignore
+    dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
+  if (!internalInstance) return null;
+  return {
+    internalInstance,
+    props: internalInstance.memoizedProps,
+    state: internalInstance.memoizedState,
+  };
+};
+
+// Define a temporary container component that logs its instance to the console
+// eslint-disable-next-line
+class LogComponentInstance extends React.Component {
+  componentDidMount() {
+    console.log('Component instance:', this);
+  }
+  render() {
+    // eslint-disable-next-line
+    return this.props.children;
+  }
+}
+
+// disabled-eslint
 import {
   serializedNode,
   serializedNodeWithId,
@@ -796,9 +863,20 @@ function serializeElementNode(
     delete attributes.src; // prevent auto loading
   }
 
+  console.log('@@@@@@@@@@@@@@@@@');
+  // eslint-disable-next-line
+
+  console.log({
+    // eslint-disable-next-line
+    n,
+    //@ts-ignore
+    react_component: window.getReactDomComponent(n),
+  });
   return {
     type: NodeType.Element,
     tagName,
+    //@ts-ignore
+    component: window.getReactDomComponent(n),
     attributes,
     childNodes: [],
     isSVG: isSVGElement(n as Element) || undefined,
@@ -1007,7 +1085,7 @@ export function serializeNodeWithId(
     id = genId();
   }
 
-  const serializedNode = Object.assign(_serializedNode, { id });
+  const serializedNode = Object.assign(_serializedNode, { id, matan: 123123 });
   // add IGNORED_NODE to mirror to track nextSiblings
   mirror.add(n, serializedNode);
 

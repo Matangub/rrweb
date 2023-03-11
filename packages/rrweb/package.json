@@ -84,6 +84,8 @@
     "base64-arraybuffer": "^1.0.1",
     "fflate": "^0.4.4",
     "mitt": "^3.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rrdom": "^2.0.0-alpha.5",
     "rrweb-snapshot": "^2.0.0-alpha.5"
   }
