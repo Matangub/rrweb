@@ -13,9 +13,6 @@ temp
 
 .DS_Store
 
-build
-dist
-
 .turbo
 
 # `.yarn/install-state.gz` is an optimization file that you shouldn't ever have to commit. 
