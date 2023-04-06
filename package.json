@@ -10,10 +10,10 @@
   "author": "Matangub@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rrweb-io/rrweb/issues"
+    "url": "https://github.com/Matangub/rrweb/issues"
   },
   "private": true,
-  "homepage": "https://github.com/rrweb-io/rrweb#readme",
+  "homepage": "https://github.com/Matangub/rrweb#readme",
   "workspaces": [
     "packages/*"
   ],

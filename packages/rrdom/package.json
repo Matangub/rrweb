@@ -1,7 +1,7 @@
 {
   "name": "rrdom",
   "version": "2.0.0-alpha.7",
-  "homepage": "https://github.com/rrweb-io/rrweb/tree/main/packages/rrdom#readme",
+  "homepage": "https://github.com/Matangub/rrweb/tree/main/packages/rrdom#readme",
   "license": "MIT",
   "main": "lib/rrdom.cjs",
   "module": "es/rrdom.js",
@@ -16,7 +16,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rrweb-io/rrweb.git"
+    "url": "git+https://github.com/Matangub/rrweb.git"
   },
   "scripts": {
     "dev": "rollup -c -w",
@@ -28,7 +28,7 @@
     "lint": "yarn eslint src/**/*.ts"
   },
   "bugs": {
-    "url": "https://github.com/rrweb-io/rrweb/issues"
+    "url": "https://github.com/Matangub/rrweb/issues"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",

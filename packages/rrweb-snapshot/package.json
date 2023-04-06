@@ -17,7 +17,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rrweb-io/rrweb.git"
+    "url": "git+https://github.com/Matangub/rrweb.git"
   },
   "keywords": [
     "rrweb",
@@ -37,9 +37,9 @@
   "author": "yanzhen@smartx.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rrweb-io/rrweb/issues"
+    "url": "https://github.com/Matangub/rrweb/issues"
   },
-  "homepage": "https://github.com/rrweb-io/rrweb/tree/master/packages/rrweb-snapshot#readme",
+  "homepage": "https://github.com/Matangub/rrweb/tree/master/packages/rrweb-snapshot#readme",
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0"
