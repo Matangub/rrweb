@@ -1,4 +1,5 @@
 {
+  "name": "matan-rrweb",
   "description": "record and replay the web",
   "version": "0.0.1",
   "repository": {
