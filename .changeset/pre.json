@@ -12,6 +12,7 @@
     "rrvideo": "2.0.0-alpha.6"
   },
   "changesets": [
+    "letsgo",
     "calm-bulldogs-speak",
     "chatty-cherries-train",
     "eight-terms-hunt",
