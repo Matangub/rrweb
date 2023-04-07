@@ -339,17 +339,26 @@ export default class MutationBuffer {
       });
       if (sn) {
         // @ts-ignore
-        const comp: any = window.getReactDomComponent(n);
-        // @ts-ignore
-        const comp2: any = window.getReactDomComponent(sn);
-        adds.push({
-          parentId,
-          nextId,
+        try {
           // @ts-ignore
-          comp,
-          comp2,
-          node: sn,
-        });
+          const comp: any = window.getReactDomComponent(n);
+          // @ts-ignore
+          const comp2: any = window.getReactDomComponent(sn);
+
+          adds.push({
+            parentId,
+            nextId,
+            // @ts-ignore
+            comp,
+            comp2,
+            node: sn,
+          });
+        } catch (e) {
+          console.log(
+            '🚀 ~ file: mutation.ts:356 ~ MutationBuffer ~ pushAdd ~ e:',
+            e,
+          );
+        }
       }
     };
 
