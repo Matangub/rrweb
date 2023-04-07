@@ -1,3 +1,5 @@
+// @ts-ignore
+/* eslint-disable */
 import {
   serializeNodeWithId,
   transformAttribute,
@@ -31,6 +33,20 @@ import {
   getShadowHost,
   getInputType,
 } from '../utils';
+
+// @ts-ignore
+window.getReactDomComponent = function (dom: any) {
+  // @ts-ignore
+  const internalInstance =
+    // @ts-ignore
+    dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))] as any;
+  if (!internalInstance) return null;
+  return {
+    internalInstance,
+    props: internalInstance.memoizedProps,
+    state: internalInstance.memoizedState,
+  } as any;
+};
 
 type DoubleLinkedListNode = {
   previous: DoubleLinkedListNode | null;
@@ -322,9 +338,16 @@ export default class MutationBuffer {
         },
       });
       if (sn) {
+        // @ts-ignore
+        const comp: any = window.getReactDomComponent(n);
+        // @ts-ignore
+        const comp2: any = window.getReactDomComponent(sn);
         adds.push({
           parentId,
           nextId,
+          // @ts-ignore
+          comp,
+          comp2,
           node: sn,
         });
       }
