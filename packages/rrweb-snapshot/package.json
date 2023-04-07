@@ -4,6 +4,7 @@
   "description": "rrweb's component to take a snapshot of DOM, aka DOM serializer",
   "scripts": {
     "prepare": "npm run prepack",
+    "pack": "pack",
     "prepack": "npm run bundle && npm run typings",
     "test": "jest",
     "test:watch": "jest --watch",

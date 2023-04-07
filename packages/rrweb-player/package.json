@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build": "rollup -c",
+    "pack": "pack",
     "dev": "rollup -c -w",
     "prepublishOnly": "yarn build",
     "start": "sirv public",

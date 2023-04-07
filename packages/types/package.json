@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "dev": "vite",
+    "pack": "pack",
     "build": "tsc -noEmit && vite build",
     "check-types": "tsc -noEmit",
     "prepublish": "npm run build",

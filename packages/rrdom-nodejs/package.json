@@ -3,6 +3,7 @@
   "version": "2.0.0-alpha.7",
   "scripts": {
     "dev": "rollup -c -w",
+    "pack": "pack",
     "bundle": "rollup --config",
     "bundle:es-only": "cross-env ES_ONLY=true rollup --config",
     "check-types": "tsc -noEmit",
