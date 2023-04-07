@@ -872,17 +872,14 @@ function serializeElementNode(
   console.log('@@@@@@@@@@@@@@@@@');
   // eslint-disable-next-line
 
-  console.log({
-    // eslint-disable-next-line
-    n,
-    //@ts-ignore
-    react_component: window.getReactDomComponent(n),
-  });
+  // @ts-ignore
+  const comp = window.getReactDomComponent(n);
   return {
     type: NodeType.Element,
     tagName,
     //@ts-ignore
-    component: window.getReactDomComponent(n),
+    component: comp,
+    stringified: JSON.stringify(comp),
     attributes,
     childNodes: [],
     isSVG: isSVGElement(n as Element) || undefined,
