@@ -130,6 +130,8 @@ export class Mirror implements IMirror<Node> {
 
   add(n: Node, meta: serializedNodeWithId) {
     const id = meta.id;
+    // @ts-ignore
+    n.fileName = window.getReactDomComponent(n);
     this.idNodeMap.set(id, n);
     this.nodeMetaMap.set(n, meta);
   }
@@ -140,6 +142,8 @@ export class Mirror implements IMirror<Node> {
       const meta = this.nodeMetaMap.get(oldNode);
       if (meta) this.nodeMetaMap.set(n, meta);
     }
+    // @ts-ignore
+    n.fileName = window.getReactDomComponent(n);
     this.idNodeMap.set(id, n);
   }
 
