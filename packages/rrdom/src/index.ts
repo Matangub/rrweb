@@ -341,7 +341,7 @@ export function createMirror(): Mirror {
 // based on Mirror from rrweb-snapshots
 export class Mirror implements IMirror<RRNode> {
   private idNodeMap: Map<number, RRNode> = new Map();
-  private nodeMetaMap: WeakMap<RRNode, serializedNodeWithId> = new WeakMap();
+  private nodeMetaMap: Map<RRNode, serializedNodeWithId> = new Map();
 
   getId(n: RRNode | undefined | null): number {
     if (!n) return -1;
@@ -403,7 +403,7 @@ export class Mirror implements IMirror<RRNode> {
 
   reset() {
     this.idNodeMap = new Map();
-    this.nodeMetaMap = new WeakMap();
+    this.nodeMetaMap = new Map();
   }
 }
 
