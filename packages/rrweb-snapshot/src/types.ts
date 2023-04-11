@@ -113,7 +113,7 @@ export interface IMirror<TNode> {
 
 export type idNodeMap = Map<number, Node>;
 
-export type nodeMetaMap = WeakMap<Node, serializedNodeWithId>;
+export type nodeMetaMap = Map<Node, serializedNodeWithId>;
 
 export type MaskInputOptions = Partial<{
   color: boolean;

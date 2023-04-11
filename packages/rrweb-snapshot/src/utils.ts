@@ -84,8 +84,8 @@ export function isCSSImportRule(rule: CSSRule): rule is CSSImportRule {
 }
 
 export class Mirror implements IMirror<Node> {
-  private idNodeMap: idNodeMap = new Map();
-  private nodeMetaMap: nodeMetaMap = new WeakMap();
+  public idNodeMap: idNodeMap = new Map();
+  public nodeMetaMap: nodeMetaMap = new Map();
 
   getId(n: Node | undefined | null): number {
     if (!n) return -1;
@@ -149,7 +149,7 @@ export class Mirror implements IMirror<Node> {
 
   reset() {
     this.idNodeMap = new Map();
-    this.nodeMetaMap = new WeakMap();
+    this.nodeMetaMap = new Map();
   }
 }
 

@@ -340,8 +340,8 @@ export function createMirror(): Mirror {
 
 // based on Mirror from rrweb-snapshots
 export class Mirror implements IMirror<RRNode> {
-  private idNodeMap: Map<number, RRNode> = new Map();
-  private nodeMetaMap: Map<RRNode, serializedNodeWithId> = new Map();
+  public idNodeMap: Map<number, RRNode> = new Map();
+  public nodeMetaMap: Map<RRNode, serializedNodeWithId> = new Map();
 
   getId(n: RRNode | undefined | null): number {
     if (!n) return -1;
