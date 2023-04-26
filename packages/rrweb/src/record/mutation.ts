@@ -10,6 +10,7 @@ import {
   maskInputValue,
   Mirror,
   isNativeShadowDom,
+  getInputType,
 } from 'rrweb-snapshot';
 import type { observerParam, MutationBufferParam } from '../types';
 import type {
@@ -31,7 +32,6 @@ import {
   isSerializedStylesheet,
   inDom,
   getShadowHost,
-  getInputType,
 } from '../utils';
 
 // @ts-ignore
@@ -526,6 +526,7 @@ export default class MutationBuffer {
           const type = getInputType(target);
 
           value = maskInputValue({
+            element: target,
             maskInputOptions: this.maskInputOptions,
             tagName: target.tagName,
             type,
