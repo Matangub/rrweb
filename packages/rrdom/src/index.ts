@@ -40,13 +40,9 @@ const getReactDomComponent = function (dom: any) {
   // @ts-ignore
   dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
   if (!internalInstance) return null;
-  return {
-    internalInstance,
-    props: internalInstance.memoizedProps,
-    state: internalInstance.memoizedState,
-  };
+  return internalInstance?._debugSource?.fileName;
 };
-
+//return internalInstance?._debugSource?.fileName;
 export class RRDocument extends BaseRRDocumentImpl(RRNode) {
   private UNSERIALIZED_STARTING_ID = -2;
   // In the rrweb replayer, there are some unserialized nodes like the element that stores the injected style rules.

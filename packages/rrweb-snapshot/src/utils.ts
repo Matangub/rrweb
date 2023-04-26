@@ -19,11 +19,7 @@ const getReactDomComponent = function (dom: any) {
   // @ts-ignore
   dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
   if (!internalInstance) return null;
-  return {
-    internalInstance,
-    props: internalInstance.memoizedProps,
-    state: internalInstance.memoizedState,
-  };
+  return internalInstance?._debugSource?.fileName;
 };
 
 export function isElement(n: Node): n is Element {
