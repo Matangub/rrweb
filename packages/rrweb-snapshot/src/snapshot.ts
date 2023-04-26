@@ -26,6 +26,19 @@ import {
 let _id = 1;
 const tagNameRegex = new RegExp('[^a-z0-9-_:]');
 
+const getReactDomComponent = function (dom: any) {
+  // @ts-ignore
+  const internalInstance =
+  // @ts-ignore
+  dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
+  if (!internalInstance) return null;
+  return {
+    internalInstance,
+    props: internalInstance.memoizedProps,
+    state: internalInstance.memoizedState,
+  };
+};
+
 export const IGNORED_NODE = -2;
 
 export function genId(): number {
@@ -807,7 +820,7 @@ function serializeElementNode(
   // eslint-disable-next-line
 
   // @ts-ignore
-  const comp = window.getReactDomComponent(n);
+  const comp = getReactDomComponent(n);
   return {
     type: NodeType.Element,
     tagName,

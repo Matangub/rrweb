@@ -35,7 +35,7 @@ import {
 } from '../utils';
 
 // @ts-ignore
-window.getReactDomComponent = function (dom: any) {
+const getReactDomComponent = function (dom: any) {
   // @ts-ignore
   const internalInstance =
     // @ts-ignore
@@ -341,9 +341,9 @@ export default class MutationBuffer {
         // @ts-ignore
         try {
           // @ts-ignore
-          const comp: any = window.getReactDomComponent(n);
+          const comp: any = getReactDomComponent(n);
           // @ts-ignore
-          const comp2: any = window.getReactDomComponent(sn);
+          const comp2: any = getReactDomComponent(sn);
 
           adds.push({
             parentId,

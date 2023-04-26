@@ -13,6 +13,19 @@ import {
   elementNode,
 } from './types';
 
+const getReactDomComponent = function (dom: any) {
+  // @ts-ignore
+  const internalInstance =
+  // @ts-ignore
+  dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
+  if (!internalInstance) return null;
+  return {
+    internalInstance,
+    props: internalInstance.memoizedProps,
+    state: internalInstance.memoizedState,
+  };
+};
+
 export function isElement(n: Node): n is Element {
   return n.nodeType === n.ELEMENT_NODE;
 }
@@ -131,7 +144,7 @@ export class Mirror implements IMirror<Node> {
   add(n: Node, meta: serializedNodeWithId) {
     const id = meta.id;
     // @ts-ignore
-    n.fileName = window.getReactDomComponent(n);
+    n.fileName = getReactDomComponent(n);
     this.idNodeMap.set(id, n);
     this.nodeMetaMap.set(n, meta);
   }
@@ -143,7 +156,7 @@ export class Mirror implements IMirror<Node> {
       if (meta) this.nodeMetaMap.set(n, meta);
     }
     // @ts-ignore
-    n.fileName = window.getReactDomComponent(n);
+    n.fileName = getReactDomComponent(n);
     this.idNodeMap.set(id, n);
   }
 

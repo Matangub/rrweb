@@ -33,6 +33,20 @@ import {
   IRRComment,
 } from './document';
 
+
+const getReactDomComponent = function (dom: any) {
+  // @ts-ignore
+  const internalInstance =
+  // @ts-ignore
+  dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
+  if (!internalInstance) return null;
+  return {
+    internalInstance,
+    props: internalInstance.memoizedProps,
+    state: internalInstance.memoizedState,
+  };
+};
+
 export class RRDocument extends BaseRRDocumentImpl(RRNode) {
   private UNSERIALIZED_STARTING_ID = -2;
   // In the rrweb replayer, there are some unserialized nodes like the element that stores the injected style rules.
@@ -385,7 +399,7 @@ export class Mirror implements IMirror<RRNode> {
   add(n: RRNode, meta: serializedNodeWithId) {
     const id = meta.id;
     // @ts-ignore
-    n.fileName = window.getReactDomComponent(n);
+    n.fileName = getReactDomComponent(n);
     this.idNodeMap.set(id, n);
     this.nodeMetaMap.set(n, meta);
   }
@@ -397,7 +411,7 @@ export class Mirror implements IMirror<RRNode> {
       if (meta) this.nodeMetaMap.set(n, meta);
     }
     // @ts-ignore
-    n.fileName = window.getReactDomComponent(n);
+    n.fileName = getReactDomComponent(n);
     this.idNodeMap.set(id, n);
   }
 
