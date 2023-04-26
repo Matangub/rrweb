@@ -40,12 +40,11 @@ const getReactDomComponent = function (dom: any) {
   const internalInstance =
     // @ts-ignore
     dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))] as any;
-  if (!internalInstance) return null;
-  return {
-    internalInstance,
-    props: internalInstance.memoizedProps,
-    state: internalInstance.memoizedState,
-  } as any;
+  if (!internalInstance) {
+    return null;
+  }
+
+  return internalInstance?._debugSource?.fileName;
 };
 
 type DoubleLinkedListNode = {

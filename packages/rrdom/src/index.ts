@@ -33,13 +33,14 @@ import {
   IRRComment,
 } from './document';
 
-
 const getReactDomComponent = function (dom: any) {
   // @ts-ignore
   const internalInstance =
-  // @ts-ignore
-  dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
-  if (!internalInstance) return null;
+    // @ts-ignore
+    dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
+  if (!internalInstance) {
+    return null;
+  }
   return internalInstance?._debugSource?.fileName;
 };
 //return internalInstance?._debugSource?.fileName;

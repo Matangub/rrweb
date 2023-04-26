@@ -28,11 +28,14 @@ let _id = 1;
 const tagNameRegex = new RegExp('[^a-z0-9-_:]');
 
 const getReactDomComponent = function (dom: any) {
+  console.log('#######');
   // @ts-ignore
   const internalInstance =
-  // @ts-ignore
-  dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
-  if (!internalInstance) return null;
+    // @ts-ignore
+    dom[Object.keys(dom ?? {}).find((key) => key.startsWith('__react'))];
+  if (!internalInstance) {
+    return null;
+  }
   return internalInstance?._debugSource?.fileName;
 };
 
